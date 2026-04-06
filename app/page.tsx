@@ -239,7 +239,7 @@ export default function Home() {
                   <div
                     key={svc.id}
                     className={`relative flex flex-col p-8 md:p-10 bg-white rounded-2xl border-2 transition-all duration-300 ${
-                      svc.popular ? "pt-12" : ""
+                      svc.popular ? "pt-14" : ""
                     } ${
                       inCart
                         ? "border-[var(--ol-emerald)] shadow-lg shadow-[var(--ol-emerald)]/10"
@@ -247,7 +247,7 @@ export default function Home() {
                     }`}
                   >
                     {svc.popular && (
-                      <div className="absolute -top-3.5 left-8 px-3 py-1 bg-[var(--ol-emerald)] text-white text-xs font-bold rounded-full uppercase tracking-wider shadow-sm">
+                      <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-5 py-1.5 bg-[var(--ol-emerald)] text-white text-xs font-bold rounded-full uppercase tracking-wider shadow-md z-10">
                         Most Popular
                       </div>
                     )}
