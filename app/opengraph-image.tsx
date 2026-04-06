@@ -5,6 +5,18 @@ export const alt = "Omni Leads LLC — À La Carte Marketing Services";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
+/* OG images render as edge functions — can't use CSS variables.
+   Keep these synced with globals.css :root vars. */
+const OL_NAVY = "#0f172a";
+const OL_NAVY_LIGHT = "#1e293b";
+const OL_EMERALD = "#10b981";
+const OL_EMERALD_LIGHT = "#34d399";
+const OL_EMERALD_PALE = "#6ee7b7";
+const OL_GRAY_400 = "#9ca3af";
+const OL_GRAY_300 = "#d1d5db";
+const OL_GRAY_600 = "#4b5563";
+const OL_GRAY_700 = "#374151";
+
 export default function OGImage() {
   return new ImageResponse(
     (
@@ -16,13 +28,13 @@ export default function OGImage() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)",
+          background: `linear-gradient(135deg, ${OL_NAVY} 0%, ${OL_NAVY_LIGHT} 50%, ${OL_NAVY} 100%)`,
           fontFamily: "system-ui, sans-serif",
           position: "relative",
         }}
       >
         {/* Top accent bar */}
-        <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 4, background: "linear-gradient(90deg, #10b981, #34d399, #10b981)", display: "flex" }} />
+        <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 4, background: `linear-gradient(90deg, ${OL_EMERALD}, ${OL_EMERALD_LIGHT}, ${OL_EMERALD})`, display: "flex" }} />
 
         {/* Badge */}
         <div
@@ -37,8 +49,8 @@ export default function OGImage() {
             marginBottom: 24,
           }}
         >
-          <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#10b981", display: "flex" }} />
-          <span style={{ color: "#10b981", fontSize: 16, fontWeight: 700 }}>À La Carte Marketing</span>
+          <div style={{ width: 8, height: 8, borderRadius: "50%", background: OL_EMERALD, display: "flex" }} />
+          <span style={{ color: OL_EMERALD, fontSize: 16, fontWeight: 700 }}>À La Carte Marketing</span>
         </div>
 
         {/* Title */}
@@ -46,7 +58,7 @@ export default function OGImage() {
           style={{
             fontSize: 56,
             fontWeight: 800,
-            background: "linear-gradient(135deg, #10b981, #34d399, #6ee7b7)",
+            background: `linear-gradient(135deg, ${OL_EMERALD}, ${OL_EMERALD_LIGHT}, ${OL_EMERALD_PALE})`,
             backgroundClip: "text",
             color: "transparent",
             textAlign: "center",
@@ -59,7 +71,7 @@ export default function OGImage() {
         </h1>
 
         {/* Subtitle */}
-        <p style={{ color: "#9ca3af", fontSize: 22, textAlign: "center", maxWidth: 650, marginTop: 16, lineHeight: 1.4 }}>
+        <p style={{ color: OL_GRAY_400, fontSize: 22, textAlign: "center", maxWidth: 650, marginTop: 16, lineHeight: 1.4 }}>
           Pick the marketing services you need. Pay only for what you use.
         </p>
 
@@ -76,12 +88,12 @@ export default function OGImage() {
                 background: "rgba(255,255,255,0.05)",
                 border: "1px solid rgba(255,255,255,0.1)",
                 borderRadius: 50,
-                color: "#d1d5db",
+                color: OL_GRAY_300,
                 fontSize: 14,
                 fontWeight: 600,
               }}
             >
-              <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#10b981", display: "flex" }} />
+              <div style={{ width: 6, height: 6, borderRadius: "50%", background: OL_EMERALD, display: "flex" }} />
               {label}
             </div>
           ))}
@@ -89,9 +101,9 @@ export default function OGImage() {
 
         {/* Bottom branding */}
         <div style={{ position: "absolute", bottom: 24, display: "flex", alignItems: "center", gap: 8 }}>
-          <span style={{ color: "#6b7280", fontSize: 14 }}>Omni Leads LLC</span>
-          <span style={{ color: "#374151" }}>•</span>
-          <span style={{ color: "#6b7280", fontSize: 14 }}>omnileads.shop</span>
+          <span style={{ color: OL_GRAY_600, fontSize: 14 }}>Omni Leads LLC</span>
+          <span style={{ color: OL_GRAY_700 }}>•</span>
+          <span style={{ color: OL_GRAY_600, fontSize: 14 }}>omnileads.shop</span>
         </div>
       </div>
     ),

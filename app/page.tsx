@@ -162,7 +162,7 @@ export default function Home() {
               </a>
               <button
                 onClick={() => setShowCart(!showCart)}
-                className="relative flex items-center gap-2 px-4 py-2 bg-[var(--ol-emerald)] hover:bg-[var(--ol-emerald-hover)] text-white text-sm font-semibold rounded-lg transition-colors"
+                className="relative flex items-center gap-2 px-5 py-3 min-h-11 bg-[var(--ol-emerald)] hover:bg-[var(--ol-emerald-hover)] text-white text-sm font-semibold rounded-lg transition-colors"
               >
                 <ShoppingCart className="w-4 h-4" />
                 <span className="hidden sm:inline">Cart</span>
@@ -369,7 +369,7 @@ export default function Home() {
               <h3 className="text-lg font-bold text-[var(--ol-gray-900)]">
                 Your Cart ({cart.length})
               </h3>
-              <button onClick={() => setShowCart(false)} className="p-2 rounded-lg hover:bg-[var(--ol-gray-100)] transition-colors">
+              <button onClick={() => setShowCart(false)} className="p-3 min-w-11 min-h-11 rounded-lg hover:bg-[var(--ol-gray-100)] transition-colors flex items-center justify-center">
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -394,7 +394,7 @@ export default function Home() {
                           <h4 className="text-sm font-bold text-[var(--ol-gray-900)] truncate">{svc.title}</h4>
                           <p className="text-sm text-[var(--ol-gray-500)]">${svc.price} {svc.unit}</p>
                         </div>
-                        <button onClick={() => toggleService(svc.id)} className="p-1.5 rounded-lg hover:bg-[var(--ol-gray-200)] transition-colors">
+                        <button onClick={() => toggleService(svc.id)} className="p-2.5 min-w-11 min-h-11 rounded-lg hover:bg-[var(--ol-gray-200)] transition-colors flex items-center justify-center">
                           <X className="w-4 h-4 text-[var(--ol-gray-400)]" />
                         </button>
                       </div>
