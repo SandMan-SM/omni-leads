@@ -1,0 +1,19 @@
+# Omni Leads LLC
+> À la carte digital marketing services — pick what you need, pay only for what you use.
+
+## About
+Omni Leads LLC is a digital marketing agency based in Salt Lake City, Utah.
+We offer individual marketing services without bundles or long-term contracts.
+
+## Services
+- Google My Business Optimization ($299/mo): Full GMB profile setup, weekly posts, review management, photo optimization
+- Content Writing ($150/article): 1,500+ word SEO articles with keyword research, internal linking, meta tags
+- On-Page SEO ($499/mo): Full site audit, title/meta optimization, schema markup, Core Web Vitals
+- Off-Page SEO & Link Building ($599/mo): Manual outreach, guest posts, niche backlinks, competitor analysis
+- Directory Citations ($199 one-time): 50+ directory submissions, NAP consistency, duplicate cleanup
+- Press Releases ($349/release): Professional copy, 400+ outlet distribution, Google News inclusion
+
+## Contact
+- Phone: (801) 898-7022
+- Address: 307 W 200 S #5002-118, Salt Lake City, UT 84101
+- Website: https://omnileads.shop
