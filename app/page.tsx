@@ -144,7 +144,7 @@ export default function Home() {
     <>
       {/* ──── NAV ──── */}
       <nav className="sticky top-0 z-50 bg-[var(--ol-navy)]/95 backdrop-blur-md border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
           <div className="flex items-center justify-between h-16 md:h-20">
             <a href="/" className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-lg bg-[var(--ol-emerald)] flex items-center justify-center">
@@ -162,7 +162,7 @@ export default function Home() {
               </a>
               <button
                 onClick={() => setShowCart(!showCart)}
-                className="relative flex items-center gap-2 px-5 py-3 min-h-11 bg-[var(--ol-emerald)] hover:bg-[var(--ol-emerald-hover)] text-white text-sm font-semibold rounded-lg transition-colors"
+                className="relative flex items-center gap-2 px-5 py-3 min-h-11 bg-[var(--ol-emerald)] hover:bg-[var(--ol-emerald-hover)] text-white text-sm font-semibold rounded-full transition-colors"
               >
                 <ShoppingCart className="w-4 h-4" />
                 <span className="hidden sm:inline">Cart</span>
@@ -182,18 +182,18 @@ export default function Home() {
         <section className="relative bg-[var(--ol-navy)] text-white overflow-hidden">
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-20 left-10 w-72 h-72 rounded-full bg-[var(--ol-emerald)] blur-3xl" />
-            <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-emerald-700 blur-3xl" />
+            <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-[var(--ol-emerald)]/60 blur-3xl" />
           </div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+          <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-24 md:py-32">
             <div className="max-w-3xl mx-auto text-center">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--ol-emerald)]/10 border border-[var(--ol-emerald)]/30 rounded-full text-[var(--ol-emerald)] text-sm font-semibold mb-6">
                 <Zap className="w-4 h-4" />
                 À La Carte Marketing — No Bundles, No Contracts
               </div>
-              <h1 className="display-heading text-white mb-6">
+              <h1 className="display-heading text-white mb-5">
                 Pick the Marketing Services You Need. Pay Only for What You Use.
               </h1>
-              <p className="text-lg text-white/70 mb-8 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg text-white/70 mb-10 max-w-2xl mx-auto leading-relaxed">
                 SEO, Google My Business, content writing, press releases, citations & more.
                 Add services to your cart, check out, and we get to work — it&apos;s that simple.
               </p>
@@ -206,7 +206,7 @@ export default function Home() {
 
         {/* ──── TRUST BAR ──── */}
         <section className="bg-[var(--ol-navy-light)] border-b border-white/5 py-5">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
             <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14">
               {trustPoints.map((t) => {
                 const Icon = t.icon;
@@ -222,47 +222,49 @@ export default function Home() {
 
         {/* ──── SERVICES GRID ──── */}
         <section id="services" className="py-20 md:py-28 bg-[var(--ol-gray-50)]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
             <div className="text-center mb-16">
-              <p className="text-[var(--ol-emerald)] font-semibold text-sm uppercase tracking-wider mb-3">Our Services</p>
-              <h2 className="section-heading text-[var(--ol-gray-900)]">À La Carte Marketing Menu</h2>
-              <p className="mt-4 text-[var(--ol-gray-500)] max-w-2xl mx-auto text-lg">
+              <p className="text-[var(--ol-emerald)] font-semibold text-sm uppercase tracking-wider mb-6">Our Services</p>
+              <h2 className="section-heading text-[var(--ol-gray-900)] mb-5">À La Carte Marketing Menu</h2>
+              <p className="text-[var(--ol-gray-500)] max-w-2xl mx-auto text-lg leading-relaxed">
                 Select the services you need. No bundles, no upsells — just results.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {services.map((svc) => {
                 const Icon = svc.icon;
                 const inCart = cart.includes(svc.id);
                 return (
                   <div
                     key={svc.id}
-                    className={`relative p-8 bg-white rounded-2xl border-2 transition-all duration-300 ${
+                    className={`relative flex flex-col p-8 md:p-10 bg-white rounded-2xl border-2 transition-all duration-300 ${
+                      svc.popular ? "pt-12" : ""
+                    } ${
                       inCart
-                        ? "border-[var(--ol-emerald)] shadow-lg shadow-emerald-100"
+                        ? "border-[var(--ol-emerald)] shadow-lg shadow-[var(--ol-emerald)]/10"
                         : "border-[var(--ol-gray-200)] hover:border-[var(--ol-emerald)]/30 hover:shadow-md"
                     }`}
                   >
                     {svc.popular && (
-                      <div className="absolute -top-3 left-6 px-3 py-1 bg-[var(--ol-emerald)] text-white text-xs font-bold rounded-full uppercase tracking-wider">
+                      <div className="absolute -top-3.5 left-8 px-3 py-1 bg-[var(--ol-emerald)] text-white text-xs font-bold rounded-full uppercase tracking-wider shadow-sm">
                         Most Popular
                       </div>
                     )}
 
-                    <div className="w-14 h-14 rounded-xl bg-emerald-50 flex items-center justify-center mb-5">
+                    <div className="w-14 h-14 rounded-xl bg-[var(--ol-emerald)]/10 flex items-center justify-center mb-6">
                       <Icon className="w-7 h-7 text-[var(--ol-emerald)]" />
                     </div>
 
-                    <h3 className="text-lg font-bold text-[var(--ol-gray-900)] mb-2">{svc.title}</h3>
-                    <p className="text-[var(--ol-gray-500)] text-sm leading-relaxed mb-4">{svc.description}</p>
+                    <h3 className="text-xl font-bold text-[var(--ol-gray-900)] mb-3">{svc.title}</h3>
+                    <p className="text-[var(--ol-gray-500)] leading-relaxed mb-5">{svc.description}</p>
 
                     <div className="mb-5">
-                      <span className="text-3xl font-extrabold text-[var(--ol-gray-900)]">${svc.price}</span>
-                      <span className="text-[var(--ol-gray-500)] text-sm ml-1">{svc.unit}</span>
+                      <span className="text-4xl font-extrabold text-[var(--ol-gray-900)]">${svc.price}</span>
+                      <span className="text-base text-[var(--ol-gray-500)] ml-1">{svc.unit}</span>
                     </div>
 
-                    <ul className="space-y-2.5 mb-6">
+                    <ul className="space-y-3 mb-8">
                       {svc.features.map((f) => (
                         <li key={f} className="flex items-start gap-2 text-sm text-[var(--ol-gray-600)]">
                           <CheckCircle2 className="w-4 h-4 text-[var(--ol-emerald)] shrink-0 mt-0.5" />
@@ -273,7 +275,7 @@ export default function Home() {
 
                     <button
                       onClick={() => toggleService(svc.id)}
-                      className={`w-full py-3 rounded-xl font-semibold text-sm transition-colors ${
+                      className={`mt-auto w-full py-3.5 rounded-xl font-bold text-base transition-colors ${
                         inCart
                           ? "bg-[var(--ol-gray-100)] text-[var(--ol-gray-600)] hover:bg-[var(--ol-gray-200)]"
                           : "bg-[var(--ol-emerald)] hover:bg-[var(--ol-emerald-hover)] text-white"
@@ -290,23 +292,23 @@ export default function Home() {
 
         {/* ──── HOW IT WORKS ──── */}
         <section className="py-20 md:py-28 bg-white">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-10">
             <div className="text-center mb-16">
-              <p className="text-[var(--ol-emerald)] font-semibold text-sm uppercase tracking-wider mb-3">Simple Process</p>
-              <h2 className="section-heading text-[var(--ol-gray-900)]">How It Works</h2>
+              <p className="text-[var(--ol-emerald)] font-semibold text-sm uppercase tracking-wider mb-6">Simple Process</p>
+              <h2 className="section-heading text-[var(--ol-gray-900)] mb-5">How It Works</h2>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               {[
                 { step: "01", title: "Pick Your Services", desc: "Browse our menu and add the marketing services you need to your cart." },
                 { step: "02", title: "Check Out", desc: "Submit your order. No contracts, no commitments — pay only for what you select." },
                 { step: "03", title: "We Get to Work", desc: "Our team starts immediately. You'll see real results within 30 days." },
               ].map((item) => (
                 <div key={item.step} className="text-center">
-                  <div className="w-16 h-16 rounded-2xl bg-emerald-50 flex items-center justify-center mx-auto mb-5">
+                  <div className="w-16 h-16 rounded-2xl bg-[var(--ol-emerald)]/10 flex items-center justify-center mx-auto mb-6">
                     <span className="text-2xl font-extrabold text-[var(--ol-emerald)]">{item.step}</span>
                   </div>
-                  <h3 className="text-lg font-bold text-[var(--ol-gray-900)] mb-2">{item.title}</h3>
-                  <p className="text-[var(--ol-gray-500)] text-sm leading-relaxed">{item.desc}</p>
+                  <h3 className="text-xl font-bold text-[var(--ol-gray-900)] mb-3">{item.title}</h3>
+                  <p className="text-[var(--ol-gray-500)] leading-relaxed max-w-xs mx-auto">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -314,13 +316,13 @@ export default function Home() {
         </section>
 
         {/* ──── CTA ──── */}
-        <section className="py-20 md:py-28 bg-[var(--ol-navy)] text-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="section-heading text-white mb-4">Ready to Grow Your Business?</h2>
-            <p className="text-white/70 text-lg mb-8 max-w-2xl mx-auto">
+        <section className="py-24 md:py-32 bg-[var(--ol-navy)] text-white">
+          <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-10 text-center">
+            <h2 className="section-heading text-white mb-5">Ready to Grow Your Business?</h2>
+            <p className="text-white/70 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
               Pick your services, check out, and let us handle the rest. No long-term contracts — cancel anytime.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-5 justify-center">
               <a href="#services" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--ol-emerald)] hover:bg-[var(--ol-emerald-hover)] text-white font-bold rounded-xl transition-colors text-lg">
                 Browse Services <ArrowRight className="w-5 h-5" />
               </a>
@@ -333,16 +335,16 @@ export default function Home() {
       </main>
 
       {/* ──── FOOTER ──── */}
-      <footer className="bg-[var(--ol-gray-900)] text-white/60 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+      <footer className="bg-[var(--ol-gray-900)] text-white/60 py-16">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-lg bg-[var(--ol-emerald)] flex items-center justify-center">
                 <Zap className="w-4 h-4 text-white" />
               </div>
               <span className="text-sm font-bold text-white">Omni Leads LLC</span>
             </div>
-            <div className="flex flex-wrap items-center gap-6 text-sm">
+            <div className="flex flex-wrap items-center gap-8 text-sm">
               <a href={PHONE_HREF} className="flex items-center gap-2 hover:text-white transition-colors">
                 <Phone className="w-4 h-4" /> {PHONE}
               </a>
@@ -354,7 +356,7 @@ export default function Home() {
               </span>
             </div>
           </div>
-          <div className="border-t border-white/10 mt-8 pt-8 text-center text-xs text-white/40">
+          <div className="border-t border-white/10 mt-10 pt-10 text-center text-xs text-white/40">
             © {new Date().getFullYear()} Omni Leads LLC. All rights reserved. | 307 W 200 S #5002-118, Salt Lake City, UT 84101
           </div>
         </div>
@@ -369,7 +371,7 @@ export default function Home() {
               <h3 className="text-lg font-bold text-[var(--ol-gray-900)]">
                 Your Cart ({cart.length})
               </h3>
-              <button onClick={() => setShowCart(false)} className="p-3 min-w-11 min-h-11 rounded-lg hover:bg-[var(--ol-gray-100)] transition-colors flex items-center justify-center">
+              <button onClick={() => setShowCart(false)} className="p-3 min-w-11 min-h-11 rounded-xl hover:bg-[var(--ol-gray-100)] transition-colors flex items-center justify-center">
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -382,19 +384,19 @@ export default function Home() {
                   <p className="text-sm text-[var(--ol-gray-400)] mt-1">Add services from the menu above</p>
                 </div>
               ) : (
-                <div className="space-y-4">
+                <div className="space-y-5">
                   {cartServices.map((svc) => {
                     const Icon = svc.icon;
                     return (
                       <div key={svc.id} className="flex items-start gap-4 p-4 bg-[var(--ol-gray-50)] rounded-xl">
-                        <div className="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center shrink-0">
+                        <div className="w-10 h-10 rounded-lg bg-[var(--ol-emerald)]/10 flex items-center justify-center shrink-0">
                           <Icon className="w-5 h-5 text-[var(--ol-emerald)]" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <h4 className="text-sm font-bold text-[var(--ol-gray-900)] truncate">{svc.title}</h4>
                           <p className="text-sm text-[var(--ol-gray-500)]">${svc.price} {svc.unit}</p>
                         </div>
-                        <button onClick={() => toggleService(svc.id)} className="p-2.5 min-w-11 min-h-11 rounded-lg hover:bg-[var(--ol-gray-200)] transition-colors flex items-center justify-center">
+                        <button onClick={() => toggleService(svc.id)} className="p-2.5 min-w-10 min-h-10 rounded-xl hover:bg-[var(--ol-gray-200)] transition-colors flex items-center justify-center">
                           <X className="w-4 h-4 text-[var(--ol-gray-400)]" />
                         </button>
                       </div>
@@ -405,8 +407,8 @@ export default function Home() {
             </div>
 
             {cartServices.length > 0 && (
-              <div className="p-6 border-t border-[var(--ol-gray-200)]">
-                <div className="flex items-center justify-between mb-4">
+              <div className="p-8 border-t border-[var(--ol-gray-200)]">
+                <div className="flex items-center justify-between mb-5">
                   <span className="text-sm font-medium text-[var(--ol-gray-500)]">Total</span>
                   <span className="text-2xl font-extrabold text-[var(--ol-gray-900)]">${total}</span>
                 </div>
