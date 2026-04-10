@@ -4,7 +4,8 @@ import { useState } from "react";
 import {
   MapPin, Search, FileText, Link2, Building2, Newspaper,
   Phone, Mail, CheckCircle2, ShoppingCart, X, ArrowRight,
-  Star, Shield, Clock, Zap,
+  Star, Shield, Clock, Zap, BarChart2, Globe, Megaphone,
+  ChevronRight,
 } from "lucide-react";
 
 /* ─────────────────── DATA ─────────────────── */
@@ -116,6 +117,51 @@ const services: Service[] = [
       "Performance reporting",
     ],
   },
+  {
+    id: "social",
+    icon: Megaphone,
+    title: "Social Media Management",
+    description: "Done-for-you social media content, scheduling, and engagement across your key platforms.",
+    price: 449,
+    unit: "/mo",
+    features: [
+      "12 posts/mo (FB, IG, LinkedIn)",
+      "Custom branded graphics",
+      "Caption & hashtag strategy",
+      "Community engagement",
+      "Monthly analytics report",
+    ],
+  },
+  {
+    id: "google-ads",
+    icon: BarChart2,
+    title: "Google Ads Management",
+    description: "ROI-focused paid search campaigns with ongoing optimization to lower cost-per-lead.",
+    price: 599,
+    unit: "/mo",
+    features: [
+      "Campaign setup & structure",
+      "Keyword & audience targeting",
+      "Ad copy A/B testing",
+      "Bid & budget management",
+      "Weekly performance reporting",
+    ],
+  },
+  {
+    id: "audit",
+    icon: Globe,
+    title: "Website Audit",
+    description: "Comprehensive technical and SEO audit with a prioritized action plan to fix what's hurting your rankings.",
+    price: 249,
+    unit: "one-time",
+    features: [
+      "Technical SEO audit",
+      "Speed & Core Web Vitals",
+      "On-page content analysis",
+      "Backlink profile review",
+      "Prioritized fix checklist",
+    ],
+  },
 ];
 
 const trustPoints = [
@@ -125,20 +171,108 @@ const trustPoints = [
   { icon: Zap, text: "Pay Only What You Need" },
 ];
 
+const testimonials = [
+  {
+    name: "Marcus T.",
+    role: "Owner, Peak Plumbing Utah",
+    body: "Within 60 days of signing up for GMB Optimization and Directory Citations our call volume doubled. We're now ranking in the local 3-pack for every major keyword. Absolutely worth every penny.",
+    stars: 5,
+  },
+  {
+    name: "Jennifer R.",
+    role: "Marketing Director, Brighter Dental",
+    body: "The content writing service is phenomenal. Our blog traffic is up 340% in 4 months and we're getting leads we never had before. The articles are well-researched and actually rank.",
+    stars: 5,
+  },
+  {
+    name: "Derek S.",
+    role: "CEO, Summit Roofing Co.",
+    body: "We tried a big agency and wasted $3,000/mo on a bundle we didn't need. Omni Leads let us pick exactly what we wanted — GMB + On-Page SEO — and the results have been incredible.",
+    stars: 5,
+  },
+  {
+    name: "Amanda L.",
+    role: "Founder, Mesa Verde Landscaping",
+    body: "The press release distribution got us featured in 3 local news outlets overnight. We saw a spike in branded searches and several new clients mentioned seeing us in the news.",
+    stars: 5,
+  },
+];
+
 /* ─────────────────── COMPONENT ─────────────────── */
 
 export default function Home() {
   const [cart, setCart] = useState<string[]>([]);
   const [showCart, setShowCart] = useState(false);
 
+  // Checkout form state
+  const [formName, setFormName] = useState("");
+  const [formEmail, setFormEmail] = useState("");
+  const [formPhone, setFormPhone] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [payingWithCard, setPayingWithCard] = useState(false);
+
   const toggleService = (id: string) => {
     setCart((prev) =>
       prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id]
     );
+    setSubmitted(false);
+    setSubmitError("");
   };
 
   const cartServices = services.filter((s) => cart.includes(s.id));
   const total = cartServices.reduce((sum, s) => sum + s.price, 0);
+
+  async function handleSubmitOrder(e: React.FormEvent) {
+    e.preventDefault();
+    setSubmitting(true);
+    setSubmitError("");
+    try {
+      const res = await fetch("/api/order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formName,
+          email: formEmail,
+          phone: formPhone,
+          services: cartServices.map((s) => ({ title: s.title, price: s.price, unit: s.unit })),
+          total,
+        }),
+      });
+      if (!res.ok) throw new Error("Order failed");
+      setSubmitted(true);
+      setCart([]);
+    } catch {
+      setSubmitError("Something went wrong. Please call us or email directly.");
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  async function handlePayWithCard() {
+    setPayingWithCard(true);
+    setSubmitError("");
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          services: cartServices.map((s) => ({ title: s.title, price: s.price, unit: s.unit })),
+        }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error("No checkout URL");
+      }
+    } catch {
+      setSubmitError("Payment setup failed. Please try the free order form instead.");
+    } finally {
+      setPayingWithCard(false);
+    }
+  }
 
   return (
     <>
@@ -186,7 +320,7 @@ export default function Home() {
           </div>
           <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-24 md:py-32">
             <div className="max-w-3xl mx-auto text-center">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--ol-emerald)]/10 border border-[var(--ol-emerald)]/30 rounded-full text-[var(--ol-emerald)] text-sm font-semibold mb-6">
+              <div className="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2 bg-[var(--ol-emerald)]/10 border border-[var(--ol-emerald)]/30 rounded-full text-[var(--ol-emerald)] text-sm font-semibold mb-6 text-center">
                 <Zap className="w-4 h-4" />
                 À La Carte Marketing — No Bundles, No Contracts
               </div>
@@ -207,7 +341,7 @@ export default function Home() {
         {/* ──── TRUST BAR ──── */}
         <section className="bg-[var(--ol-navy-light)] border-b border-white/5 py-5">
           <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
-            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14">
+            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 md:gap-14">
               {trustPoints.map((t) => {
                 const Icon = t.icon;
                 return (
@@ -264,7 +398,7 @@ export default function Home() {
                       <span className="text-base text-[var(--ol-gray-500)] ml-1">{svc.unit}</span>
                     </div>
 
-                    <ul className="space-y-3 mb-8">
+                    <ul className="space-y-2 mb-8">
                       {svc.features.map((f) => (
                         <li key={f} className="flex items-start gap-2 text-sm text-[var(--ol-gray-600)]">
                           <CheckCircle2 className="w-4 h-4 text-[var(--ol-emerald)] shrink-0 mt-0.5" />
@@ -315,6 +449,64 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ──── TESTIMONIALS ──── */}
+        <section className="py-20 md:py-28 bg-[var(--ol-gray-50)]">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+            <div className="text-center mb-16">
+              <p className="text-[var(--ol-emerald)] font-semibold text-sm uppercase tracking-wider mb-6">Client Results</p>
+              <h2 className="section-heading text-[var(--ol-gray-900)] mb-5">What Our Clients Say</h2>
+              <p className="text-[var(--ol-gray-500)] max-w-xl mx-auto text-lg leading-relaxed">
+                Real businesses. Real results. No long-term contracts required.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {testimonials.map((t) => (
+                <div key={t.name} className="bg-white rounded-2xl border border-[var(--ol-gray-200)] p-8 md:p-10 flex flex-col gap-5">
+                  <div className="flex gap-1">
+                    {Array.from({ length: t.stars }).map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-[var(--ol-emerald)] text-[var(--ol-emerald)]" />
+                    ))}
+                  </div>
+                  <p className="text-[var(--ol-gray-600)] leading-relaxed text-base">&ldquo;{t.body}&rdquo;</p>
+                  <div className="mt-auto">
+                    <div className="font-bold text-[var(--ol-gray-900)] text-sm">{t.name}</div>
+                    <div className="text-[var(--ol-gray-400)] text-xs mt-0.5">{t.role}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ──── BLOG PREVIEW ──── */}
+        <section className="py-20 md:py-28 bg-white">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-12">
+              <div>
+                <p className="text-[var(--ol-emerald)] font-semibold text-sm uppercase tracking-wider mb-3">Resources</p>
+                <h2 className="section-heading text-[var(--ol-gray-900)]">SEO Tips & Insights</h2>
+              </div>
+              <a href="/blog" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--ol-emerald)] hover:text-[var(--ol-emerald-hover)] transition-colors shrink-0">
+                View all posts <ChevronRight className="w-4 h-4" />
+              </a>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                { title: "How to Rank in Google's Local 3-Pack in 2024", category: "Local SEO", date: "Mar 12, 2024" },
+                { title: "The Beginner's Guide to On-Page SEO Optimization", category: "On-Page SEO", date: "Feb 28, 2024" },
+                { title: "Why NAP Consistency Can Make or Break Your Local Rankings", category: "Citations", date: "Feb 14, 2024" },
+              ].map((post) => (
+                <a key={post.title} href="/blog" className="group flex flex-col gap-4 p-6 rounded-2xl border border-[var(--ol-gray-200)] hover:border-[var(--ol-emerald)]/40 hover:shadow-md transition-all">
+                  <div className="h-2 w-12 rounded-full bg-[var(--ol-emerald)]" />
+                  <span className="text-xs font-semibold text-[var(--ol-emerald)] uppercase tracking-wider">{post.category}</span>
+                  <h3 className="font-bold text-[var(--ol-gray-900)] leading-snug group-hover:text-[var(--ol-emerald)] transition-colors">{post.title}</h3>
+                  <span className="text-xs text-[var(--ol-gray-400)] mt-auto">{post.date}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ──── CTA ──── */}
         <section className="py-24 md:py-32 bg-[var(--ol-navy)] text-white">
           <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-10 text-center">
@@ -344,13 +536,14 @@ export default function Home() {
               </div>
               <span className="text-sm font-bold text-white">Omni Leads LLC</span>
             </div>
-            <div className="flex flex-wrap items-center gap-8 text-sm">
+            <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
               <a href={PHONE_HREF} className="flex items-center gap-2 hover:text-white transition-colors">
                 <Phone className="w-4 h-4" /> {PHONE}
               </a>
               <a href={`mailto:${EMAIL}`} className="flex items-center gap-2 hover:text-white transition-colors">
                 <Mail className="w-4 h-4" /> {EMAIL}
               </a>
+              <a href="/blog" className="hover:text-white transition-colors">Blog</a>
               <span className="flex items-center gap-2">
                 <MapPin className="w-4 h-4" /> Salt Lake City, UT
               </span>
@@ -366,8 +559,9 @@ export default function Home() {
       {showCart && (
         <div className="fixed inset-0 z-[60]">
           <div className="absolute inset-0 bg-black/50" onClick={() => setShowCart(false)} />
-          <div className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col">
-            <div className="flex items-center justify-between p-6 border-b border-[var(--ol-gray-200)]">
+          <div className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col overflow-hidden">
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 border-b border-[var(--ol-gray-200)] shrink-0">
               <h3 className="text-lg font-bold text-[var(--ol-gray-900)]">
                 Your Cart ({cart.length})
               </h3>
@@ -376,15 +570,24 @@ export default function Home() {
               </button>
             </div>
 
+            {/* Items */}
             <div className="flex-1 overflow-y-auto p-6">
-              {cartServices.length === 0 ? (
+              {cartServices.length === 0 && !submitted ? (
                 <div className="text-center py-16">
                   <ShoppingCart className="w-12 h-12 text-[var(--ol-gray-300)] mx-auto mb-4" />
                   <p className="text-[var(--ol-gray-500)]">Your cart is empty</p>
                   <p className="text-sm text-[var(--ol-gray-400)] mt-1">Add services from the menu above</p>
                 </div>
+              ) : submitted ? (
+                <div className="text-center py-16 px-4">
+                  <CheckCircle2 className="w-16 h-16 text-[var(--ol-emerald)] mx-auto mb-5" />
+                  <h4 className="text-xl font-bold text-[var(--ol-gray-900)] mb-3">Order Received!</h4>
+                  <p className="text-[var(--ol-gray-500)] leading-relaxed">
+                    Thanks! We&apos;ll reach out within 24 hours to confirm and get started.
+                  </p>
+                </div>
               ) : (
-                <div className="space-y-5">
+                <div className="space-y-4">
                   {cartServices.map((svc) => {
                     const Icon = svc.icon;
                     return (
@@ -396,7 +599,7 @@ export default function Home() {
                           <h4 className="text-sm font-bold text-[var(--ol-gray-900)] truncate">{svc.title}</h4>
                           <p className="text-sm text-[var(--ol-gray-500)]">${svc.price} {svc.unit}</p>
                         </div>
-                        <button onClick={() => toggleService(svc.id)} className="p-2.5 min-w-10 min-h-10 rounded-xl hover:bg-[var(--ol-gray-200)] transition-colors flex items-center justify-center">
+                        <button onClick={() => toggleService(svc.id)} className="p-2.5 min-w-11 min-h-11 rounded-xl hover:bg-[var(--ol-gray-200)] transition-colors flex items-center justify-center">
                           <X className="w-4 h-4 text-[var(--ol-gray-400)]" />
                         </button>
                       </div>
@@ -406,19 +609,65 @@ export default function Home() {
               )}
             </div>
 
-            {cartServices.length > 0 && (
-              <div className="p-8 border-t border-[var(--ol-gray-200)]">
-                <div className="flex items-center justify-between mb-5">
+            {/* Checkout form + actions */}
+            {cartServices.length > 0 && !submitted && (
+              <div className="shrink-0 border-t border-[var(--ol-gray-200)] p-6 space-y-4 overflow-y-auto max-h-[55vh]">
+                <div className="flex items-center justify-between mb-1">
                   <span className="text-sm font-medium text-[var(--ol-gray-500)]">Total</span>
                   <span className="text-2xl font-extrabold text-[var(--ol-gray-900)]">${total}</span>
                 </div>
-                <a
-                  href={`mailto:info@omnileads.shop?subject=Service%20Order&body=I'd%20like%20to%20order%20the%20following%20services:%0A${cartServices.map((s) => `- ${s.title} ($${s.price} ${s.unit})`).join("%0A")}%0A%0ATotal: $${total}`}
-                  className="block w-full py-4 bg-[var(--ol-emerald)] hover:bg-[var(--ol-emerald-hover)] text-white font-bold rounded-xl transition-colors text-center text-lg"
+
+                <form onSubmit={handleSubmitOrder} className="space-y-3">
+                  <input
+                    required
+                    type="text"
+                    placeholder="Your name"
+                    value={formName}
+                    onChange={(e) => setFormName(e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl border border-[var(--ol-gray-200)] text-sm text-[var(--ol-gray-900)] placeholder-[var(--ol-gray-400)] focus:outline-none focus:border-[var(--ol-emerald)] focus:ring-1 focus:ring-[var(--ol-emerald)]"
+                  />
+                  <input
+                    required
+                    type="email"
+                    placeholder="Email address"
+                    value={formEmail}
+                    onChange={(e) => setFormEmail(e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl border border-[var(--ol-gray-200)] text-sm text-[var(--ol-gray-900)] placeholder-[var(--ol-gray-400)] focus:outline-none focus:border-[var(--ol-emerald)] focus:ring-1 focus:ring-[var(--ol-emerald)]"
+                  />
+                  <input
+                    type="tel"
+                    placeholder="Phone (optional)"
+                    value={formPhone}
+                    onChange={(e) => setFormPhone(e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl border border-[var(--ol-gray-200)] text-sm text-[var(--ol-gray-900)] placeholder-[var(--ol-gray-400)] focus:outline-none focus:border-[var(--ol-emerald)] focus:ring-1 focus:ring-[var(--ol-emerald)]"
+                  />
+                  {submitError && (
+                    <p className="text-xs text-red-500">{submitError}</p>
+                  )}
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="w-full py-4 bg-[var(--ol-emerald)] hover:bg-[var(--ol-emerald-hover)] disabled:opacity-60 text-white font-bold rounded-xl transition-colors text-base"
+                  >
+                    {submitting ? "Submitting…" : "Submit Order — We'll Invoice You"}
+                  </button>
+                </form>
+
+                <div className="relative flex items-center gap-3">
+                  <div className="flex-1 h-px bg-[var(--ol-gray-200)]" />
+                  <span className="text-xs text-[var(--ol-gray-400)]">or</span>
+                  <div className="flex-1 h-px bg-[var(--ol-gray-200)]" />
+                </div>
+
+                <button
+                  onClick={handlePayWithCard}
+                  disabled={payingWithCard}
+                  className="w-full py-4 bg-[var(--ol-navy)] hover:bg-[var(--ol-navy-light)] disabled:opacity-60 text-white font-bold rounded-xl transition-colors text-base border border-[var(--ol-navy-light)]"
                 >
-                  Submit Order
-                </a>
-                <p className="text-xs text-[var(--ol-gray-400)] text-center mt-3">
+                  {payingWithCard ? "Redirecting…" : "Pay Now with Card"}
+                </button>
+
+                <p className="text-xs text-[var(--ol-gray-400)] text-center">
                   We&apos;ll contact you within 24 hours to confirm and get started.
                 </p>
               </div>
