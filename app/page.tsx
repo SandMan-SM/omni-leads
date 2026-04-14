@@ -291,8 +291,8 @@ export default function Home() {
             </a>
 
             <div className="flex items-center gap-4">
-              <a href={PHONE_HREF} className="hidden md:flex items-center gap-2 text-sm font-semibold text-[var(--ol-emerald)] hover:text-[var(--ol-emerald-hover)] transition-colors">
-                <Phone className="w-4 h-4" /> {PHONE}
+              <a href={PHONE_HREF} aria-label={`Call Omni Leads at ${PHONE}`} className="hidden md:flex items-center gap-2 text-sm font-semibold text-[var(--ol-emerald)] hover:text-[var(--ol-emerald-hover)] transition-colors">
+                <Phone className="w-4 h-4" aria-hidden="true" /> {PHONE}
               </a>
               <button
                 onClick={() => setShowCart(!showCart)}
@@ -494,9 +494,9 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
-                { title: "How to Rank in Google's Local 3-Pack in 2024", category: "Local SEO", date: "Mar 12, 2024" },
-                { title: "The Beginner's Guide to On-Page SEO Optimization", category: "On-Page SEO", date: "Feb 28, 2024" },
-                { title: "Why NAP Consistency Can Make or Break Your Local Rankings", category: "Citations", date: "Feb 14, 2024" },
+                { title: "How to Rank in Google's Local 3-Pack in 2026", category: "Local SEO", date: "Mar 12, 2026" },
+                { title: "The Beginner's Guide to On-Page SEO Optimization", category: "On-Page SEO", date: "Feb 28, 2026" },
+                { title: "Why NAP Consistency Can Make or Break Your Local Rankings", category: "Citations", date: "Feb 14, 2026" },
               ].map((post) => (
                 <a key={post.title} href="/blog" className="group flex flex-col gap-4 p-6 rounded-2xl border border-[var(--ol-gray-200)] hover:border-[var(--ol-emerald)]/40 hover:shadow-md transition-all">
                   <div className="h-2 w-12 rounded-full bg-[var(--ol-emerald)]" />
@@ -539,10 +539,10 @@ export default function Home() {
               <span className="text-sm font-bold text-white">Omni Leads LLC</span>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
-              <a href={PHONE_HREF} className="flex items-center gap-2 hover:text-white transition-colors">
+              <a href={PHONE_HREF} aria-label={`Call Omni Leads at ${PHONE}`} className="flex items-center gap-2 hover:text-white transition-colors">
                 <Phone className="w-4 h-4" /> {PHONE}
               </a>
-              <a href={`mailto:${EMAIL}`} className="flex items-center gap-2 hover:text-white transition-colors">
+              <a href={`mailto:${EMAIL}`} aria-label={`Email Omni Leads at ${EMAIL}`} className="flex items-center gap-2 hover:text-white transition-colors">
                 <Mail className="w-4 h-4" /> {EMAIL}
               </a>
               <a href="/blog" className="hover:text-white transition-colors">Blog</a>

@@ -23,11 +23,11 @@ const posts = [
   {
     slug: "rank-in-google-local-3-pack",
     category: "Local SEO",
-    title: "How to Rank in Google's Local 3-Pack in 2024",
+    title: "How to Rank in Google's Local 3-Pack in 2026",
     excerpt:
       "The Local 3-Pack shows up in nearly every local search — and the businesses in it get the lion's share of clicks. Here's exactly what it takes to claim one of those spots.",
     readTime: "7 min read",
-    date: "March 12, 2024",
+    date: "March 12, 2026",
     body: [
       "Google's Local 3-Pack (the map box with three business listings) appears in roughly 93% of local searches. If your business isn't in it, you're invisible to most potential customers.",
       "The three biggest ranking factors are: relevance (does your GMB profile match the search?), distance (how close are you to the searcher?), and prominence (how well-known is your business online?).",
@@ -43,7 +43,7 @@ const posts = [
     excerpt:
       "On-page SEO is the foundation of every successful ranking strategy. Master these fundamentals and you'll have a significant edge over most of your competitors.",
     readTime: "9 min read",
-    date: "February 28, 2024",
+    date: "February 28, 2026",
     body: [
       "On-page SEO refers to everything you can control directly on your website — from your title tags to your content structure to your page speed. It's the foundation before any off-page work makes sense.",
       "Start with your title tags. Every page should have a unique title under 60 characters that includes your target keyword near the beginning. Your meta description (under 155 characters) won't directly affect rankings but it does influence click-through rate.",
@@ -60,7 +60,7 @@ const posts = [
     excerpt:
       "Your business Name, Address, and Phone number need to be identical everywhere online. Here's why inconsistency hurts your rankings — and how to fix it fast.",
     readTime: "5 min read",
-    date: "February 14, 2024",
+    date: "February 14, 2026",
     body: [
       "NAP stands for Name, Address, and Phone number. It's one of the most underestimated local SEO factors, and inconsistency across the web is one of the most common reasons local businesses struggle to rank.",
       "Google cross-references your business information across hundreds of websites — Yelp, Facebook, YellowPages, Angi, and dozens of niche directories. When it finds conflicting information, it loses confidence in your business and pushes you down in local results.",
@@ -75,6 +75,7 @@ export default function BlogPage() {
   return (
     <>
       {/* ──── NAV ──── */}
+      <a href="#main" className="skip-link">Skip to content</a>
       <nav className="sticky top-0 z-50 bg-[var(--ol-navy)]/95 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
           <div className="flex items-center justify-between h-16 md:h-20">
@@ -97,7 +98,7 @@ export default function BlogPage() {
         </div>
       </nav>
 
-      <main>
+      <main id="main">
         {/* ──── HERO ──── */}
         <section className="bg-[var(--ol-navy)] text-white py-20 md:py-28">
           <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
@@ -165,9 +166,9 @@ export default function BlogPage() {
       </main>
 
       {/* ──── FOOTER ──── */}
-      <footer className="bg-[var(--ol-gray-900)] text-white/60 py-12">
+      <footer className="bg-[var(--ol-gray-900)] text-white/60 py-16">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 text-center text-xs text-white/40">
-          © {new Date().getFullYear()} Omni Leads LLC. All rights reserved.
+          © {new Date().getFullYear()} Omni Leads LLC. All rights reserved. | 307 W 200 S #5002-118, Salt Lake City, UT 84101
         </div>
       </footer>
     </>
