@@ -280,7 +280,7 @@ export default function Home() {
       <nav className="sticky top-0 z-50 bg-[var(--ol-navy)]/95 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
           <div className="flex items-center justify-between h-16 md:h-20">
-            <a href="/" className="flex items-center gap-3">
+            <a href="/" className="flex items-center gap-4">
               <div className="w-9 h-9 rounded-lg bg-[var(--ol-emerald)] flex items-center justify-center">
                 <Zap className="w-5 h-5 text-white" />
               </div>
@@ -324,7 +324,7 @@ export default function Home() {
                 <Zap className="w-4 h-4" />
                 À La Carte Marketing — No Bundles, No Contracts
               </div>
-              <h1 className="display-heading text-white mb-5">
+              <h1 className="display-heading text-white mb-6">
                 Pick the Marketing Services You Need. Pay Only for What You Use.
               </h1>
               <p className="text-lg text-white/70 mb-10 max-w-2xl mx-auto leading-relaxed">
@@ -359,7 +359,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
             <div className="text-center mb-16">
               <p className="text-[var(--ol-emerald)] font-semibold text-sm uppercase tracking-wider mb-6">Our Services</p>
-              <h2 className="section-heading text-[var(--ol-gray-900)] mb-5">À La Carte Marketing Menu</h2>
+              <h2 className="section-heading text-[var(--ol-gray-900)] mb-6">À La Carte Marketing Menu</h2>
               <p className="text-[var(--ol-gray-500)] max-w-2xl mx-auto text-lg leading-relaxed">
                 Select the services you need. No bundles, no upsells — just results.
               </p>
@@ -390,10 +390,10 @@ export default function Home() {
                       <Icon className="w-7 h-7 text-[var(--ol-emerald)]" />
                     </div>
 
-                    <h3 className="text-xl font-bold text-[var(--ol-gray-900)] mb-3">{svc.title}</h3>
-                    <p className="text-[var(--ol-gray-500)] leading-relaxed mb-5">{svc.description}</p>
+                    <h3 className="text-xl font-bold text-[var(--ol-gray-900)] mb-4">{svc.title}</h3>
+                    <p className="text-[var(--ol-gray-500)] leading-relaxed mb-6">{svc.description}</p>
 
-                    <div className="mb-5">
+                    <div className="mb-6">
                       <span className="text-4xl font-extrabold text-[var(--ol-gray-900)]">${svc.price}</span>
                       <span className="text-base text-[var(--ol-gray-500)] ml-1">{svc.unit}</span>
                     </div>
@@ -409,7 +409,7 @@ export default function Home() {
 
                     <button
                       onClick={() => toggleService(svc.id)}
-                      className={`mt-auto w-full py-3.5 rounded-xl font-bold text-base transition-colors ${
+                      className={`mt-auto w-full py-4 rounded-xl font-bold text-base transition-colors ${
                         inCart
                           ? "bg-[var(--ol-gray-100)] text-[var(--ol-gray-600)] hover:bg-[var(--ol-gray-200)]"
                           : "bg-[var(--ol-emerald)] hover:bg-[var(--ol-emerald-hover)] text-white"
@@ -429,7 +429,7 @@ export default function Home() {
           <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-10">
             <div className="text-center mb-16">
               <p className="text-[var(--ol-emerald)] font-semibold text-sm uppercase tracking-wider mb-6">Simple Process</p>
-              <h2 className="section-heading text-[var(--ol-gray-900)] mb-5">How It Works</h2>
+              <h2 className="section-heading text-[var(--ol-gray-900)] mb-6">How It Works</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               {[
@@ -441,7 +441,7 @@ export default function Home() {
                   <div className="w-16 h-16 rounded-2xl bg-[var(--ol-emerald)]/10 flex items-center justify-center mx-auto mb-6">
                     <span className="text-2xl font-extrabold text-[var(--ol-emerald)]">{item.step}</span>
                   </div>
-                  <h3 className="text-xl font-bold text-[var(--ol-gray-900)] mb-3">{item.title}</h3>
+                  <h3 className="text-xl font-bold text-[var(--ol-gray-900)] mb-4">{item.title}</h3>
                   <p className="text-[var(--ol-gray-500)] leading-relaxed max-w-xs mx-auto">{item.desc}</p>
                 </div>
               ))}
@@ -454,14 +454,14 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
             <div className="text-center mb-16">
               <p className="text-[var(--ol-emerald)] font-semibold text-sm uppercase tracking-wider mb-6">Client Results</p>
-              <h2 className="section-heading text-[var(--ol-gray-900)] mb-5">What Our Clients Say</h2>
+              <h2 className="section-heading text-[var(--ol-gray-900)] mb-6">What Our Clients Say</h2>
               <p className="text-[var(--ol-gray-500)] max-w-xl mx-auto text-lg leading-relaxed">
                 Real businesses. Real results. No long-term contracts required.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {testimonials.map((t) => (
-                <div key={t.name} className="bg-white rounded-2xl border border-[var(--ol-gray-200)] p-8 md:p-10 flex flex-col gap-5">
+                <div key={t.name} className="bg-white rounded-2xl border border-[var(--ol-gray-200)] p-8 md:p-10 flex flex-col gap-6">
                   <div className="flex gap-1">
                     {Array.from({ length: t.stars }).map((_, i) => (
                       <Star key={i} className="w-4 h-4 fill-[var(--ol-emerald)] text-[var(--ol-emerald)]" />
@@ -483,7 +483,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-12">
               <div>
-                <p className="text-[var(--ol-emerald)] font-semibold text-sm uppercase tracking-wider mb-3">Resources</p>
+                <p className="text-[var(--ol-emerald)] font-semibold text-sm uppercase tracking-wider mb-4">Resources</p>
                 <h2 className="section-heading text-[var(--ol-gray-900)]">SEO Tips & Insights</h2>
               </div>
               <a href="/blog" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--ol-emerald)] hover:text-[var(--ol-emerald-hover)] transition-colors shrink-0">
@@ -510,11 +510,11 @@ export default function Home() {
         {/* ──── CTA ──── */}
         <section className="py-24 md:py-32 bg-[var(--ol-navy)] text-white">
           <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-10 text-center">
-            <h2 className="section-heading text-white mb-5">Ready to Grow Your Business?</h2>
+            <h2 className="section-heading text-white mb-6">Ready to Grow Your Business?</h2>
             <p className="text-white/70 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
               Pick your services, check out, and let us handle the rest. No long-term contracts — cancel anytime.
             </p>
-            <div className="flex flex-col sm:flex-row gap-5 justify-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <a href="#services" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--ol-emerald)] hover:bg-[var(--ol-emerald-hover)] text-white font-bold rounded-xl transition-colors text-lg">
                 Browse Services <ArrowRight className="w-5 h-5" />
               </a>
@@ -530,7 +530,7 @@ export default function Home() {
       <footer className="bg-[var(--ol-gray-900)] text-white/60 py-16">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               <div className="w-8 h-8 rounded-lg bg-[var(--ol-emerald)] flex items-center justify-center">
                 <Zap className="w-4 h-4 text-white" />
               </div>
@@ -565,7 +565,7 @@ export default function Home() {
               <h3 className="text-lg font-bold text-[var(--ol-gray-900)]">
                 Your Cart ({cart.length})
               </h3>
-              <button onClick={() => setShowCart(false)} className="p-3 min-w-11 min-h-11 rounded-xl hover:bg-[var(--ol-gray-100)] transition-colors flex items-center justify-center">
+              <button onClick={() => setShowCart(false)} aria-label="Close cart" className="p-4 min-w-11 min-h-11 rounded-xl hover:bg-[var(--ol-gray-100)] transition-colors flex items-center justify-center">
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -580,8 +580,8 @@ export default function Home() {
                 </div>
               ) : submitted ? (
                 <div className="text-center py-16 px-4">
-                  <CheckCircle2 className="w-16 h-16 text-[var(--ol-emerald)] mx-auto mb-5" />
-                  <h4 className="text-xl font-bold text-[var(--ol-gray-900)] mb-3">Order Received!</h4>
+                  <CheckCircle2 className="w-16 h-16 text-[var(--ol-emerald)] mx-auto mb-6" />
+                  <h4 className="text-xl font-bold text-[var(--ol-gray-900)] mb-4">Order Received!</h4>
                   <p className="text-[var(--ol-gray-500)] leading-relaxed">
                     Thanks! We&apos;ll reach out within 24 hours to confirm and get started.
                   </p>
@@ -599,7 +599,7 @@ export default function Home() {
                           <h4 className="text-sm font-bold text-[var(--ol-gray-900)] truncate">{svc.title}</h4>
                           <p className="text-sm text-[var(--ol-gray-500)]">${svc.price} {svc.unit}</p>
                         </div>
-                        <button onClick={() => toggleService(svc.id)} className="p-2.5 min-w-11 min-h-11 rounded-xl hover:bg-[var(--ol-gray-200)] transition-colors flex items-center justify-center">
+                        <button onClick={() => toggleService(svc.id)} aria-label={`Remove ${svc.title} from cart`} className="p-2.5 min-w-11 min-h-11 rounded-xl hover:bg-[var(--ol-gray-200)] transition-colors flex items-center justify-center">
                           <X className="w-4 h-4 text-[var(--ol-gray-400)]" />
                         </button>
                       </div>
@@ -653,7 +653,7 @@ export default function Home() {
                   </button>
                 </form>
 
-                <div className="relative flex items-center gap-3">
+                <div className="relative flex items-center gap-4">
                   <div className="flex-1 h-px bg-[var(--ol-gray-200)]" />
                   <span className="text-xs text-[var(--ol-gray-400)]">or</span>
                   <div className="flex-1 h-px bg-[var(--ol-gray-200)]" />

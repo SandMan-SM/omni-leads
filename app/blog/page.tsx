@@ -5,6 +5,18 @@ export const metadata: Metadata = {
   title: "SEO Blog & Resources | Omni Leads LLC",
   description: "Practical SEO tips, local marketing strategies, and digital marketing insights from the Omni Leads team.",
   alternates: { canonical: "https://omnileads.shop/blog" },
+  openGraph: {
+    type: "website",
+    siteName: "Omni Leads LLC",
+    title: "SEO Blog & Resources | Omni Leads LLC",
+    description: "Practical SEO tips, local marketing strategies, and digital marketing insights from the Omni Leads team.",
+    url: "https://omnileads.shop/blog",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SEO Blog & Resources | Omni Leads LLC",
+    description: "Practical SEO tips, local marketing strategies, and digital marketing insights from the Omni Leads team.",
+  },
 };
 
 const posts = [
@@ -66,7 +78,7 @@ export default function BlogPage() {
       <nav className="sticky top-0 z-50 bg-[var(--ol-navy)]/95 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
           <div className="flex items-center justify-between h-16 md:h-20">
-            <a href="/" className="flex items-center gap-3">
+            <a href="/" className="flex items-center gap-4">
               <div className="w-9 h-9 rounded-lg bg-[var(--ol-emerald)] flex items-center justify-center">
                 <Zap className="w-5 h-5 text-white" />
               </div>
@@ -93,7 +105,7 @@ export default function BlogPage() {
               <ArrowLeft className="w-4 h-4" /> Back to Home
             </a>
             <p className="text-[var(--ol-emerald)] font-semibold text-sm uppercase tracking-wider mb-4">Resources</p>
-            <h1 className="display-heading text-white mb-5 max-w-2xl">SEO Tips & Marketing Insights</h1>
+            <h1 className="display-heading text-white mb-6 max-w-2xl">SEO Tips & Marketing Insights</h1>
             <p className="text-white/70 text-lg max-w-xl leading-relaxed">
               Practical guides from the Omni Leads team to help you rank higher, generate more leads, and grow your business online.
             </p>
