@@ -296,6 +296,7 @@ export default function Home() {
               </a>
               <button
                 onClick={() => setShowCart(!showCart)}
+                aria-label={`Open cart${cart.length > 0 ? `, ${cart.length} item${cart.length > 1 ? "s" : ""}` : ""}`}
                 className="relative flex items-center gap-2 px-5 py-3 min-h-11 bg-[var(--ol-emerald)] hover:bg-[var(--ol-emerald-hover)] text-white text-sm font-semibold rounded-full transition-colors"
               >
                 <ShoppingCart className="w-4 h-4" />
@@ -409,6 +410,7 @@ export default function Home() {
 
                     <button
                       onClick={() => toggleService(svc.id)}
+                      aria-label={inCart ? `Remove ${svc.title} from cart` : `Add ${svc.title} to cart`}
                       className={`mt-auto w-full py-4 rounded-xl font-bold text-base transition-colors ${
                         inCart
                           ? "bg-[var(--ol-gray-100)] text-[var(--ol-gray-600)] hover:bg-[var(--ol-gray-200)]"
@@ -622,6 +624,7 @@ export default function Home() {
                     required
                     type="text"
                     placeholder="Your name"
+                    aria-label="Your name"
                     value={formName}
                     onChange={(e) => setFormName(e.target.value)}
                     className="w-full px-4 py-3 rounded-xl border border-[var(--ol-gray-200)] text-sm text-[var(--ol-gray-900)] placeholder-[var(--ol-gray-400)] focus:outline-none focus:border-[var(--ol-emerald)] focus:ring-1 focus:ring-[var(--ol-emerald)]"
@@ -630,6 +633,7 @@ export default function Home() {
                     required
                     type="email"
                     placeholder="Email address"
+                    aria-label="Email address"
                     value={formEmail}
                     onChange={(e) => setFormEmail(e.target.value)}
                     className="w-full px-4 py-3 rounded-xl border border-[var(--ol-gray-200)] text-sm text-[var(--ol-gray-900)] placeholder-[var(--ol-gray-400)] focus:outline-none focus:border-[var(--ol-emerald)] focus:ring-1 focus:ring-[var(--ol-emerald)]"
@@ -637,6 +641,7 @@ export default function Home() {
                   <input
                     type="tel"
                     placeholder="Phone (optional)"
+                    aria-label="Phone number (optional)"
                     value={formPhone}
                     onChange={(e) => setFormPhone(e.target.value)}
                     className="w-full px-4 py-3 rounded-xl border border-[var(--ol-gray-200)] text-sm text-[var(--ol-gray-900)] placeholder-[var(--ol-gray-400)] focus:outline-none focus:border-[var(--ol-emerald)] focus:ring-1 focus:ring-[var(--ol-emerald)]"
